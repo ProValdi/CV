@@ -1,213 +1,285 @@
 % -- Encoding UTF-8 without BOM
-% -- XeLaTeX => PDF (BIBER)
 
+\ProvidesClass{cv-style}[2015/02/27 CV class]
+\NeedsTeXFormat{LaTeX2e}
 
-\documentclass[]{cv-style}          % Add 'print' as an option into the square bracket to remove colours from this template for printing. 
-                                    % Add 'espanol' as an option into the square bracket to change the date format of the Last Updated Text
-
-\sethyphenation[variant=british]{english}{} % Add words between the {} to avoid them to be cut 
-
-\usepackage{tikz}
-
-\newcommand{\roundpic}[4][]{
-  \tikz\node [circle, minimum width = #2,
-    path picture = {
-      \node [#1] at (path picture bounding box.center) {
-        \includegraphics[width=#3]{#4}};
-    }] {};}
-
-
-\begin{document}
-
-\header{Prokhorov}{ Vladimir}       % Your name
-\lastupdated
+\DeclareOption{espanol}{\def\@cv@espanol{}}
+\DeclareOption{print}{\def\@cv@print{}}
+\DeclareOption*{%
+  \PassOptionsToClass{\CurrentOption}{article}%
+}
+\ProcessOptions\relax
+\LoadClass{article}
 
 %----------------------------------------------------------------------------------------
-% SIDEBAR SECTION  -- In the aside, each new line forces a line break
-%----------------------------------------------------------------------------------------
-
-\begin{aside}
-
-\vspace{30pt}
-\begin{minipage}[H]{\linewidth}
-\roundpic[xshift=0.12cm,yshift=-0.6cm]{3.5cm}{6.3cm}{main.jpg}
-\end{minipage}
-
-%
-\cvsection{Contact}
-~
-\icontext{EnvelopeSquare}{14}{{prokhorov.va
-@phystech.edu}}{black}\\[6pt]
-~
-\icontext{Github}{14}{{github.com/ProValdi}}{black}\\[6pt]
-~
-\icontext{Linkedin}{14}{{linkedin.com/in/provaldi}}{black}\\[6pt]
-~
-\icontext{Phone}{14}{{+7(915)0249633}}{black}\\[6pt]
-~
-%
-\cvsection{Languages}
-~
-English Intermediate
-~
-Deutsch Beginner
-%
-\cvsection{Skills}
-~
-~
-\cvskill{{\color{red} $\varheartsuit$} Java} {1} \\[-2pt]
-~
-\cvskill{SQL} {0.3} \\[-2pt]
-~
-\cvskill{Python} {0.25} \\[-2pt]
-~
-\cvskill{Git} {0.7} \\[-2pt]
-~
-\cvskill{Angular} {0.5} \\[-2pt]
-~
-\cvskill{Linux} {0.6} \\[-2pt]
-~
-\cvskill{Spring} {0.45} \\[-2pt]
-
-
-%
-\end{aside}
-
-%----------------------------------------------------------------------------------------
-% SKILLS SECTION
+% Colors %
 %----------------------------------------------------------------------------------------
 
 
+\RequirePackage{xcolor}
+
+\definecolor{maincol}{RGB}{ 45, 50, 90 }
+\definecolor{white}{RGB}{255,255,255}
+\definecolor{lightcol}{RGB}{245,245,245}
+
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{gray}{HTML}{4D4D4D}
+\definecolor{lightgray}{HTML}{999999}
+
+\definecolor{blue}{HTML}{66D9EE}
+\definecolor{red}{HTML}{FA2772}
+\definecolor{orange}{HTML}{FE9720}
+\definecolor{green}{HTML}{A7E22E}
+\definecolor{purple}{HTML}{9358FE}
+\definecolor{aquamarine}{HTML}{36AF90}
+\definecolor{gold}{HTML}{FFD700}
+
+\definecolor{date}{HTML}{A4A4A4}
+
+\ifdefined\@cv@print
+  \colorlet{blue}{gray}
+  \colorlet{red}{gray}
+  \colorlet{orange}{gray}
+  \colorlet{green}{gray}
+  \colorlet{purple}{gray}
+  \colorlet{aquamarine}{gray}
+  \colorlet{gold}{gray}
+  \colorlet{fillheader}{white}
+  \colorlet{header}{gray}
+\else
+  \colorlet{fillheader}{gray}
+  \colorlet{header}{white}
+\fi
+\colorlet{textcolor}{gray}
+\colorlet{headercolor}{gray}
+
 %----------------------------------------------------------------------------------------
-% WORK EXPERIENCE SECTION
+% Fonts %
 %----------------------------------------------------------------------------------------
 
-\section{Experience}
+\RequirePackage[quiet]{fontspec}
+\RequirePackage[math-style=TeX,vargreek-shape=unicode]{unicode-math}
 
-\begin{entrylist}
-%------------------------------------------------
+\newfontfamily\bodyfont{Roboto-Regular}[Path=fonts/]
+\newfontfamily\bodyfontit{Roboto-LightItalic}[Path=fonts/]
+\newfontfamily\thinfont{Roboto-Thin}[Path=fonts/]
+\newfontfamily\headingfont{RobotoCondensed-Bold}[Path=fonts/]
 
-\entry
-    {2021--Now}
-    {Netcracker}
-    {}
-    {\jobtitle{Junior Software Developer}\\ 
-Configuring and Deploying microservices in Kubernetes.
-Participation in the development of internal platform components in Java.
-Optimization and development of the code of existing projects.
-Fixing common defects in platform components.\\
+\defaultfontfeatures{Mapping=tex-text}
+\setmainfont[Mapping=tex-text, Color=textcolor, Path = fonts/]{Roboto-Light}
 
-Technology Stack:\\
-- Java, Angular, Spring, GraphQL\\
-- PostgreSQL, Cassandra, Redis\\
-- RabbitMQ, Kafka, Keycloak\\
-- Microservices, k8s, REST api, Postman\\
-- Elasticsearch, Prometheus\\
-- CI/CD, Jenkins\\
-- Git, Maven}
+\newcommand{\italica}[1]{%
+    {\color{gray}\bodyfontit #1}%
+}
 
-\entry
-    {2021--2021}
-    {Skoltech summer internship}
-    {}
-    {\jobtitle{}\\ 
-    During the internship, my colleagues and I developed a mobile app that allows you to measure the connection speed using 5G technology "Opensource iPerf-based 5G speedtest service". My work was in the development of a load balancer using Python, Flask and Swagger in combination with DockerHub for easy deployment.
+%----------------------------------------------------------------------------------------
+% Header %
+%----------------------------------------------------------------------------------------
+
+\RequirePackage{tikz}
+
+\newcommand{\header}[2]{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \node [rectangle, fill=fillheader, anchor=north, minimum width=\paperwidth, minimum height=2cm] (box) at (current page.north){};
+    \node [anchor=center] (name) at (box) {%
+      \fontsize{40pt}{65pt}\color{header}%
+      {\bodyfont #1}{\thinfont  #2}
+    };
+  \end{tikzpicture}
+  \vspace{1cm}
+  \vspace{-2\parskip}
+}
+
+%----------------------------------------------------------------------------------------
+% Last updated command %
+%----------------------------------------------------------------------------------------
+
+\RequirePackage[absolute,overlay]{textpos}
+\RequirePackage{polyglossia}
+
+\newcommand{\sethyphenation}[3][]{%
+  \sbox0{\begin{otherlanguage}[#1]{#2}
+    \hyphenation{#3}\end{otherlanguage}}}
+%\sethyphenation[<options>]{<language>}{<list of words separated by spaces>}
+
+\ifdefined\@cv@espanol
+  \setdefaultlanguage{spanish}
+  \def\lastupdatedtext{Última Actualización el}
+\else
+  \setdefaultlanguage[variant=british]{english}
+  \def\lastupdatedtext{Last Updated on}
+\fi
+
+\setlength{\TPHorizModule}{0.01\paperwidth}
+\setlength{\TPVertModule}{0.01\paperwidth}
+
+\newcommand{\lastupdated}{ 
+  \begin{textblock}{10}(11.3, 0.05)
+    \raggedleft
+    \fontsize{8pt}{10pt}\color{date}\thinfont 
+    \lastupdatedtext{} \today
+  \end{textblock}}
+
+%----------------------------------------------------------------------------------------
+% Structure %
+%----------------------------------------------------------------------------------------
+\RequirePackage{parskip}
+
+\newcounter{colorCounter}
+\def\@sectioncolor#1#2#3{%
+  {%
+    \color{%
+      \ifcase\value{colorCounter}%
+        blue\or%
+        red\or%
+        orange\or%
+        green\or%
+        purple\or%
+        gold\or%
+        aquamarine\else%
+        headercolor\fi%
+    } #1#2#3%
+  }%
+  \stepcounter{colorCounter}%
+}
+
+\renewcommand{\section}[1]{
+  {\par\vspace{\parskip}
+  {%
+    \LARGE\headingfont\color{headercolor}%
+    \@sectioncolor #1%
+  }
+  \par\vspace{\parskip}}
+}
+
+\renewcommand{\subsection}[2]{
+  \par\vspace{.5\parskip}%
+  \Large\headingfont\color{headercolor} #2%
+  \par\vspace{.25\parskip}%
+}
+
+\newcommand{\jobtitle}[1]{%
+    {\color{gray}\bodyfontit #1}%
+}
+
+\pagestyle{empty}
+
+%----------------------------------------------------------------------------------------
+% List environment %
+%----------------------------------------------------------------------------------------
+
+\setlength{\tabcolsep}{0pt}
+\newenvironment{entrylist}{%
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}ll}
+}{%
+  \end{tabular*}
+}
+\renewcommand{\bfseries}{\headingfont\color{headercolor}}
+\newcommand{\entry}[4]{%
+  #1&\hspace{0}\parbox[t]{11.8cm}{%
+    \textbf{#2}%
+    \hfill%
+    {\footnotesize\addfontfeature{Color=lightgray} #3}\\\vspace{0.1cm}%
+    #4\vspace{\parsep}%
+  }\\}
+  
+\newcommand{\entrySkoltech}[3]{%
+  #1&\hspace{0}\parbox[t]{11.8cm}{%
+    \textbf{#2}%
+    \hfill%
+    \vspace{0.15cm}%
+    #3\vspace{\parsep}%
+  }\\}
+
+%----------------------------------------------------------------------------------------
+% Side block %
+%----------------------------------------------------------------------------------------
+
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
+\newenvironment{aside}{%
+  \let\oldsection\section
+  \renewcommand{\section}[1]{
+    \par\vspace{\baselineskip}{\Large\headingfont\color{headercolor} ##1}
+  }
+  \begin{textblock}{8}(0.8, 1.87)
+  \begin{flushleft}
+  \obeycr
+}{%
+  \restorecr
+  \end{flushleft}
+  \end{textblock}
+  \let\section\oldsection
+}
+
+%----------------------------------------------------------------------------------------
+% Other tweaks %
+%----------------------------------------------------------------------------------------
+
+\RequirePackage[left=5.6cm,top=1cm,right=1cm,bottom=1cm,nohead,nofoot]{geometry}
+\RequirePackage{hyperref}
+\hypersetup{
+    pdfsubject=CV/Resume%
     }
-
-\entry
-    {2019--2020}
-    {NTI Contest 2019/2020}
-    {}
-    {\jobtitle{}\\
-Student stream, Wireless Technologies Profile. Finalist.
-
-During the final stage, it was necessary to develop an algorithm for optimal data transmission over a noisy channel.}
-
-%\entry
-%  {2018--Now}
-%  {Talento ConCrédito}
-%  {Culiacán, Sinaloa}
-%  {\jobtitle{Developer}\\
-%  Create, Modify, Maintain and deploy API's, in the develop, QA and production environment.
-%Our API's help to provide a financial solutions simplify by technology.
-%
-%Work with the scrum methodology.
-%
-%%Version control of our projects using git.
-%
-%Use the Google Data Studio tool to create reports that represent indicators of the systems.
-%
-%Use Docker to help us through containers to implement tools in a matter of seconds without the need to %install anything. It's multiplatform, which guarantees that the availability of our application works independently of the operating system.}
-%------------------------------------------------
-%\entry
-%  {2018--2018}
-%  {ConCrédito }
-%  {Cuiacán, Sinaloa}
-%  {\jobtitle{Tester}
-%  \begin{itemize}
-%    \item Analyze systems functional models. 
-%    \item Create test cases for the systems.
-%    \item Run test cases.
-%    \item Create autumatized tests using selenium.
-%    \item Black-Box Testing
-%    \item Record evidence and raise defects to the developers.
-%  \end{itemize}}
-
-\end{entrylist}
-
-
-\section{Volunteering}
-
-\begin{entrylist}
-
-\entry
-    {2018--2021}
-    {Experience As a Teacher}
-    {}
-    {\jobtitle{}\\
-Taught electrodynamics at the summer ecological school. Also, taught general physics for pupils at the training courses under the university.}
-
-\end{entrylist}
-
-%----------------------------------------------------------------------------------------
-% EDUCATION SECTION
-%----------------------------------------------------------------------------------------
-
-\section{Education}
-
-\begin{entrylist}
-%------------------------------------------------
-\entry
-{2018--2022}
-{{\normalfont Department of Radio Engineering and Cybernetics,\newline Bachelor's degree in Applied Mathematics and Physics}}
-{\\ Moscow Institute of Physics and Technology (MIPT)  |  Dolgoprudny, Russia \\Department of Information Systems and Networks | Netcracker}
-{\vspace{-0.3cm}}
-%------------------------------------------------
-\end{entrylist}
+\usepackage[normalem]{ulem}  % для зачекивания текста
 
 
 %----------------------------------------------------------------------------------------
-% SOFT SKILLS SECTION
-%----------------------------------------------------------------------------------------
+% FONT AWESOME ICONS
+%---------------------------------------------------------------------------------------- 
 
-%\section{Soft Skills}
-%{\vspace{0.1cm}}
-%I actually love working in team and interacting with other people. I'm not afraid to be creative and sometimes it leads to reinventing the wheel. Responsible and hardworking. I try to find the right approach to different people while working on problem.
+% include the fontawesome icon set
+\usepackage{fontawesome}
 
-%----------------------------------------------------------------------------------------
-%   INTERESTS SECTION
-%----------------------------------------------------------------------------------------
+% use to vertically center content
+% credits to: http://tex.stackexchange.com/questions/7219/how-to-vertically-center-two-images-next-to-each-other
+\newcommand{\vcenteredinclude}[1]{\begingroup
+\setbox0=\hbox{\includegraphics{#1}}%
+\parbox{\wd0}{\box0}\endgroup}
 
-\section{Interests}
-%------------------------------------------------
-%\entry
-%{Проф-ные}
-%{- {\normalfont Continue learning, work and develop a career in what I'm passionate about, which are %all the information technologies. }}
-%{}
-%{\vspace{-0.3cm}}
-%------------------------------------------------
-{\vspace{0.1cm}}
-I am in love with modern digital technologies in term of creating something new. Programming is not the only way for me to influence this entire world, electrical engineering also allows me to create new unique things. It could be IoT, embedded devices and so on. This is my hobby and I love to share my knowledge with those who are also passionate about the same thing as me. I actually love working in team and interacting with other people -- it makes me feel together we build something incredible and this is amazing.
-%------------------------------------------------
+% use to vertically center content
+% credits to: http://tex.stackexchange.com/questions/7219/how-to-vertically-center-two-images-next-to-each-other
+\newcommand*{\vcenteredhbox}[1]{\begingroup
+\setbox0=\hbox{#1}\parbox{\wd0}{\box0}\endgroup}
 
-\end{document}
+% icon shortcut
+\newcommand{\icon}[3] {               
+  \makebox(#2, #2){\textcolor{maincol}{\csname fa#1\endcsname}}
+} 
+
+% icon with text shortcut
+\newcommand{\icontext}[4]{            
+  \vcenteredhbox{\icon{#1}{#2}{#3}}  \parbox{0.9\mpwidth}{\textcolor{#4}{#3}}
+}
+
+% icon with website url
+\newcommand{\iconhref}[5]{            
+    \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} \href{#4}{\textcolor{#5}{#3}}
+}
+
+% icon with email link
+\newcommand{\iconemail}[5]{             
+    \vcenteredhbox{\icon{#1}{#2}{#5}}  \hspace{2pt} {\textcolor{#5}{#3}}
+}
+
+
+\newcommand{\cvsection}[1] {
+  \vspace{14pt}
+  \cvtext{
+    \textbf{\LARGE{\textcolor{darkcol}{#1}}}\\[-4pt]
+    \textcolor{maincol}{ \rule{0.1\textwidth}{2pt} } \\
+  }
+}
+
+\newcommand{\cvskill}[2] {
+  \begin{tabular*}{0.3\textwidth}{p{0.3\textwidth}  r}
+    \textcolor{black}{\textbf{#1}}\\
+  \end{tabular*}%
+  
+  \vspace{-8pt}
+  \begin{tikzpicture}[scale=0.5,rounded corners=2pt,very thin]
+    \fill [lightcol] (0,0.5) rectangle (1\textwidth, 0.2);
+    \fill [maincol] (0,0.5) rectangle (#2\textwidth, 0.2);
+    \end{tikzpicture}%
+}
+
