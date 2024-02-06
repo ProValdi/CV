@@ -23,7 +23,7 @@
 \lastupdated
 
 %----------------------------------------------------------------------------------------
-%   SIDEBAR SECTION  -- In the aside, each new line forces a line break
+%	SIDEBAR SECTION  -- In the aside, each new line forces a line break
 %----------------------------------------------------------------------------------------
 
 \begin{aside}
@@ -49,25 +49,18 @@
 \cvsection{Languages}
 ~
 English Intermediate
-~
-Deutsch Beginner
 %
 \cvsection{Skills}
 ~
+\cvskill{Java {\color{red} $\varheartsuit$}} {1} \\[-2pt]
 ~
-\cvskill{C} {0.7} \\[-2pt]
+\cvskill{PostgreSQL} {0.7} \\[-2pt]
 ~
-\cvskill{C++} {0.3} \\[-2pt]
+\cvskill{Git} {0.9} \\[-2pt]
 ~
 \cvskill{Linux} {0.6} \\[-2pt]
 ~
-\cvskill{STM32} {0.9} \\[-2pt]
-~
-\cvskill{Java} {1} \\[-2pt]
-~
-\cvskill{Python} {0.45} \\[-2pt]
-~
-\cvskill{Git} {0.7} \\[-2pt]
+\cvskill{Spring} {0.7} \\[-2pt]
 ~
 
 
@@ -75,12 +68,12 @@ Deutsch Beginner
 \end{aside}
 
 %----------------------------------------------------------------------------------------
-%   SKILLS SECTION
+%	SKILLS SECTION
 %----------------------------------------------------------------------------------------
 
 
 %----------------------------------------------------------------------------------------
-%   EDUCATION SECTION
+%	EDUCATION SECTION
 %----------------------------------------------------------------------------------------
 
 \section{Education}
@@ -88,8 +81,8 @@ Deutsch Beginner
 \begin{entrylist}
 %------------------------------------------------
 \entry
-{2018 -- 2022 Jul}
-{{\normalfont Department of Radio Engineering and Cybernetics,\newline Bachelor's degree in Applied Mathematics and Physics}}
+{2018 -- Now}
+{{\normalfont Department of Radio Engineering and Cybernetics,\newline Bachelor's + Master's degree in Applied Mathematics and Physics}}
 {\\ Moscow Institute of Physics and Technology (MIPT)  |  Dolgoprudny, Russia \\Department of Information Systems and Networks | Netcracker}
 {\vspace{-0.3cm}}
 %------------------------------------------------
@@ -97,7 +90,7 @@ Deutsch Beginner
 
 
 %----------------------------------------------------------------------------------------
-%   WORK EXPERIENCE SECTION
+%	WORK EXPERIENCE SECTION
 %----------------------------------------------------------------------------------------
 
 \section{Experience}
@@ -109,29 +102,36 @@ Deutsch Beginner
     {Jul 2021 -- Now}
     {Netcracker}
     {}
-    {\jobtitle{Junior Software Developer}\\ 
-    - Optimized and structured for better readability the code of an existing microservice written in Java by better organization of object dependencies;\\ - Fixed back-end and front-end defects in platfrom components;\\ - Maintained the working dev environments in Kubernetes by deploying vital microservices with properly configured parameters;\\ - Configured API for GraphQL queries in terms of new microservice.\\ - Developed unit tests for new Java component with high code coverage using JUnit5.\\
+    {\jobtitle{Software Developer}\\ 
+    - Optimized and structured for better readability the code of an existing microservice written in Java by better organization of object dependencies;
+    \\ - Maintained the working dev environments in Kubernetes by deploying vital microservices with properly configured parameters;
+    \\ - Configured API for GraphQL queries in terms of new microservice.
+    \\ - Developed unit tests for new Java component with high code coverage using JUnit5.\\
 
-Intensively worked with:\\
-- Java, Angular, SpringBoot, PostgreSQL\\
-- Microservices, k8s, REST api, Postman\\
-- Jenkins, Git, Maven}
+- Worked with message brokers: Kafka, RabbitMQ\\
+- Developed new microservice using Spring, Maven and Jooq for data fetching from DB. Also work with PostgreSQL\\
+- Know Docker and K8S (OpenLens/native dashboard), keycloak\\
+- Worked with Swagger, Postman, REST api, GraphQL\\
+- I've touched Redis, Kassandra\\
+- I know Confluence and Jira, Agile (scrum), Git\\
+- Understand what is CI/CD, Jenkins (and how use it), ElasticSearch, Prometheus (both slightly understand)
+}
 
-\entrySkoltech
-    {2021, Aug}
-    {Skoltech Summer Internship}
-    {
-    \\
-    Developed independent load balancer for iPerf-based 5G speedtest service by working with my colleague using Python Flask server in combination with Docker containerization and Swagger API.
-    }
+% \entrySkoltech
+%     {2021, Aug}
+%     {Skoltech Summer Internship}
+%     {
+%     \\
+%     Developed independent load balancer for iPerf-based 5G speedtest service by working with my colleague using Python Flask server in combination with Docker containerization and Swagger API.
+%     }
 
-\entry
-    {2020, Apr}
-    {NTI Hackathon}
-    {}
-    {\jobtitle{Student stream, Wireless Technologies Profile}\\
-Won first place out of 8 teams in hackathon at NTI by working with five colleagues to develop a noise-resistant algotirthm for optimal data transmission over a noisy channel.
-    }
+% \entry
+%     {2020, Apr}
+%     {NTI Hackathon}
+%     {}
+%     {\jobtitle{Student stream, Wireless Technologies Profile}\\
+% Won first place out of 8 teams in hackathon at NTI by working with five colleagues to develop a noise-resistant algotirthm for optimal data transmission over a noisy channel.
+%     }
 
 %\entry
 %  {2018--Now}
@@ -174,13 +174,13 @@ Won first place out of 8 teams in hackathon at NTI by working with five colleagu
     {2018--2021}
     {Experience As a Teacher}
     {\jobtitle{}\\
-Taught electrodynamics and general physics for pupils at the summer ecological school.}
+Taught general physics for pupils at MIPT preparation courses.}
 
 \end{entrylist}
 
 
 %----------------------------------------------------------------------------------------
-%   SOFT SKILLS SECTION
+%	SOFT SKILLS SECTION
 %----------------------------------------------------------------------------------------
 
 %\section{Soft Skills}
@@ -188,25 +188,12 @@ Taught electrodynamics and general physics for pupils at the summer ecological s
 %I actually love working in team and interacting with other people. I'm not afraid to be creative and sometimes it leads to reinventing the wheel. Responsible and hardworking. I try to find the right approach to different people while working on problem.
 
 %----------------------------------------------------------------------------------------
-%       INTERESTS SECTION
+%		INTERESTS SECTION
 %----------------------------------------------------------------------------------------
 
-\section{Electrical Engineering Experience}
-{\vspace{0.005cm}}
-During hole my conscious life I tend to create different electrical devices and for the last 8 years I have been improving my skills in creating those. Starting with the very basics and Arduino, ending with STM32 and digital processing using FPGAs. During this time, I sought to understand the very essence of electronic engineering, designing and implementing printed circuit boards with my own hands. I managed to implement many interesting projects from scratch, some of which are now helping me to create complex projects brick by brick right now.
-
-I have worked with many protocols such as SPI, I2C, UART, CAN, One-Wire, and also have extensive experience with timers, DMA, DAC, ADC. I have implemented a digital encoder algorithm for ultra-wideband noise-immune signal transmission, builded a flyback transformer with specified parameters, a mechanically scanned 3D display, a level detector based an accelerometer and many other small projects with interesting circuit solutions.
-\vspace{0.1cm}
-
-\section{Computer Architecture Experience}
-{\vspace{0.005cm}}
-I attended additional courses at my university that were aimed at a detailed analysis of the MIPS microarchitecture (Branch Prediction, Pipelining, Caches, etc.). Also, as part of this course, we completed practical tasks in the MIPS simulator. The course itself: https://mipt-ilab.github.io/mipt-mips/. 
-\vspace{0.1cm}
-
-\section{CISCO Computer Networks Experience}
-{\vspace{0.005cm}}
-I have a good theoretical basis for understanding computer networks (dynamic routing protocols, OSI model levels, network architecture) with practical reinforcement by working in GNS3 and on real CISCO equipment.
-\vspace{0.1cm}
+% \section{Electrical Engineering Experience}
+% {\vspace{0.005cm}}
+% During hole my conscious life I tend to create different electrical devices and for the last 8 years I have been improving my skills in creating those. Starting with the very
 
 \section{Interests}
 %------------------------------------------------
@@ -217,7 +204,32 @@ I have a good theoretical basis for understanding computer networks (dynamic rou
 %{\vspace{-0.3cm}}
 %------------------------------------------------
 {\vspace{0.05cm}}
-I am in love with modern digital technologies in term of creating something new. Programming is not the only way for me to influence this entire world, electrical engineering also allows me to create new unique things. This is my hobby and I love to share my knowledge with those who are also passionate about the same thing as me. I actually love working in team and interacting with other people -- it makes me feel together we build something incredible and this is amazing. 
+Usually this section is much more about me, because I am not only a Java-programmer. 
+I currently hold a part-time position as a junior researcher at the Kotelnikov's Research Institute as a part of my diploma work. Participated in the En&T Conference at Nov 2023. I develop PCB which can measure distance using UWB rays. During hole my conscious life I tend to create different electrical devices and for the last 8 years I have been improving my skills in creating those. Starting with the very basics and Arduino, ending with STM32 and digital processing using FPGAs.
+I also can share this experience:
+
+\begin{entrylist}
+\entrySkoltech
+{2021, Aug}
+{Skoltech Summer Internship}
+{
+\\
+Developed independent load balancer for iPerf-based 5G speedtest service by working with my colleague using Python Flask server in combination with Docker containerization and Swagger API.
+}
+
+
+
+\entry
+    {2020, Apr}
+    {NTI Hackathon}
+    {}
+    {\jobtitle{Student stream, Wireless Technologies Profile}\\
+Won first place out of 8 teams in hackathon at NTI by working with five colleagues to develop a noise-resistant algotirthm for optimal data transmission over a noisy channel.
+    }
+
+ \end{entrylist}
+
+
 %------------------------------------------------
 
 \end{document}
