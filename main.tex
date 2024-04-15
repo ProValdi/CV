@@ -36,10 +36,10 @@
 %
 \cvsection{Contact}
 ~
-\icontext{EnvelopeSquare}{14}{{prokhorov.va
+\icontext{EnvelopeSquare}{14}{{\mbox{prokhorov.va}
 @phystech.edu}}{black}\\[6pt]
 ~
-\icontext{Github}{14}{{github.com/ProValdi}}{black}\\[6pt]
+\icontext{Github}{14}{{\mbox{github.com/ProValdi}}}{black}\\[6pt]
 ~
 \icontext{Linkedin}{14}{{linkedin.com/in/provaldi}}{black}\\[6pt]
 ~
@@ -54,13 +54,17 @@ English Intermediate
 ~
 \cvskill{Java {\color{red} $\varheartsuit$}} {1} \\[-2pt]
 ~
-\cvskill{PostgreSQL} {0.7} \\[-2pt]
+\cvskill{SQL} {0.6} \\[-2pt]
 ~
 \cvskill{Git} {0.9} \\[-2pt]
 ~
-\cvskill{Linux} {0.6} \\[-2pt]
+\cvskill{Docker} {0.6} \\[-2pt]
 ~
 \cvskill{Spring} {0.7} \\[-2pt]
+~
+\cvskill{Linux} {0.6} \\[-2pt]
+~
+\cvskill{Quarkus} {0.7} \\[-2pt]
 ~
 
 
@@ -81,7 +85,7 @@ English Intermediate
 \begin{entrylist}
 %------------------------------------------------
 \entry
-{2018 -- Now}
+{2018 -- 2024}
 {{\normalfont Department of Radio Engineering and Cybernetics,\newline Bachelor's + Master's degree in Applied Mathematics and Physics}}
 {\\ Moscow Institute of Physics and Technology (MIPT)  |  Dolgoprudny, Russia \\Department of Information Systems and Networks | Netcracker}
 {\vspace{-0.3cm}}
@@ -102,68 +106,22 @@ English Intermediate
     {Jul 2021 -- Now}
     {Netcracker}
     {}
-    {\jobtitle{Software Developer}\\ 
-    - Optimized and structured for better readability the code of an existing microservice written in Java by better organization of object dependencies;
-    \\ - Maintained the working dev environments in Kubernetes by deploying vital microservices with properly configured parameters;
-    \\ - Configured API for GraphQL queries in terms of new microservice.
-    \\ - Developed unit tests for new Java component with high code coverage using JUnit5.\\
-
-- Worked with message brokers: Kafka, RabbitMQ\\
-- Developed new microservice using Spring, Maven and Jooq for data fetching from DB. Also work with PostgreSQL\\
-- Know Docker and K8S (OpenLens/native dashboard), keycloak\\
-- Worked with Swagger, Postman, REST api, GraphQL\\
-- I've touched Redis, Kassandra\\
-- I know Confluence and Jira, Agile (scrum), Git\\
-- Understand what is CI/CD, Jenkins (and how use it), ElasticSearch, Prometheus (both slightly understand)
+    {\jobtitle{Software Developer}
+    \\- Developed from scratch scalable deployable Quarkus-based containerized custom Java microservice featuring job scheduling (using Quartz) with connection to existing kafka topic (maas) for business data patching (using REST clients of other microservices). 
+    \\- Developed Spring-based Java microservice for assembling and converting business data via Jooq providing REST API for other dependent microservices of our project ecosystem.
+    \\ - Stabilized CI environment (real-time bug-fixing)
+    \\ - Developed new project's GraphQL API.
+    \\ - Developed unit tests (Junit5) for lots of microservices inside our project ecosystem.
+    \\ - Created safe business datafixes using SQL language (direct production data impact).   
+    
 }
 
-% \entrySkoltech
-%     {2021, Aug}
-%     {Skoltech Summer Internship}
-%     {
-%     \\
-%     Developed independent load balancer for iPerf-based 5G speedtest service by working with my colleague using Python Flask server in combination with Docker containerization and Swagger API.
-%     }
-
-% \entry
-%     {2020, Apr}
-%     {NTI Hackathon}
-%     {}
-%     {\jobtitle{Student stream, Wireless Technologies Profile}\\
-% Won first place out of 8 teams in hackathon at NTI by working with five colleagues to develop a noise-resistant algotirthm for optimal data transmission over a noisy channel.
-%     }
-
-%\entry
-%  {2018--Now}
-%  {Talento ConCrédito}
-%  {Culiacán, Sinaloa}
-%  {\jobtitle{Developer}\\
-%  Create, Modify, Maintain and deploy API's, in the develop, QA and production environment.
-%Our API's help to provide a financial solutions simplify by technology.
-%
-%Work with the scrum methodology.
-%
-%%Version control of our projects using git.
-%
-%Use the Google Data Studio tool to create reports that represent indicators of the systems.
-%
-%Use Docker to help us through containers to implement tools in a matter of seconds without the need to %install anything. It's multiplatform, which guarantees that the availability of our application works independently of the operating system.}
-%------------------------------------------------
-%\entry
-%  {2018--2018}
-%  {ConCrédito }
-%  {Cuiacán, Sinaloa}
-%  {\jobtitle{Tester}
-%  \begin{itemize}
-%    \item Analyze systems functional models. 
-%    \item Create test cases for the systems.
-%    \item Run test cases.
-%    \item Create autumatized tests using selenium.
-%    \item Black-Box Testing
-%    \item Record evidence and raise defects to the developers.
-%  \end{itemize}}
-
 \end{entrylist}
+
+
+
+My working expertise consists of many other technologies and frameworks that I have used through the whole 3-year coding experience. I've touched Redis and Kassandra for caching purposes, created a bunch of Docker images and able to handle them inside K8S cluster, developed a simple Netty-based client-server chat and I also have a good experience with Git. I know Confluence and Jira (used both as a part of my daily work) for referencing documentation and task planning purposes. I worked with ElasticSearch. I understand what is Jenkins and how CI/CD works. I worked with Angular and TypeScript (and all front-end stuff). I omit some other technologies and in order to keep the long story short: I feel free to learn and use new technologies that I’ve never seen before.  
+
 
 
 \section{Volunteering}
@@ -209,6 +167,16 @@ I currently hold a part-time position as a junior researcher at the Kotelnikov's
 I also can share this experience:
 
 \begin{entrylist}
+
+\entrySkoltech
+{2023, Nov\\2024, Feb}
+{\text{En\&T} Conference}
+{
+\\
+A report was presented on the topic "Positioning using UWB signals" regarding scientific research financed by RSF (Russian Science Foundation) \text{№23-29-00883}
+}
+
+
 \entrySkoltech
 {2021, Aug}
 {Skoltech Summer Internship}
@@ -226,8 +194,10 @@ Developed independent load balancer for iPerf-based 5G speedtest service by work
     {\jobtitle{Student stream, Wireless Technologies Profile}\\
 Won first place out of 8 teams in hackathon at NTI by working with five colleagues to develop a noise-resistant algotirthm for optimal data transmission over a noisy channel.
     }
+    
+    
 
- \end{entrylist}
+\end{entrylist}
 
 
 %------------------------------------------------
